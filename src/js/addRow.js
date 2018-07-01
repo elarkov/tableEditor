@@ -31,7 +31,6 @@ function newTables(){
 
 
 newTableBtn.addEventListener('click', function () {
-
   newTables();
   if(document.body.children[1].lastElementChild){
     document.body.children[1].removeChild(document.body.children[1].lastElementChild);
@@ -65,24 +64,21 @@ function addColumn() {
 
 /* === удаляем ряды у таблицы === */
 function delRows() {
-  const table = document.querySelector('.table'),
-
-    lastRow = table.rows.length - 1;
+  const table = document.querySelector('.table');
+    table.children[0].removeChild(table.children[0].lastElementChild);
+    /*lastRow = table.rows.length - 1;
 
   for (let i = lastRow; i > 0; i--) {
     table.deleteRow(i);
-  }
+  }*/
 }
 
 /* === удаляем колонки таблицы === */
 function delColumns() {
-  const table = document.querySelector('.table'),
-    lastCol = table.rows[0].cells.length - 1;
-
-  for (let i = 0; i < table.rows.length; i++) {
-    for (let j = lastCol; j > 0; j--) {
-      table.rows[i].deleteCell(j);
-    }
+  const table = document.querySelector('.table');
+  const tr = document.querySelectorAll('tr');
+  for(let i = 0; i < tr.length; i++){
+    tr[i].removeChild(tr[i].lastElementChild);
   }
 }
 
