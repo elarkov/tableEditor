@@ -10,11 +10,34 @@ const delRow = document.querySelectorAll('.menu__item')[2];
 const delCell = document.querySelectorAll('.menu__item')[3];
 const newTableBtn = document.querySelectorAll('.menu__item')[5];
 
-function newTables() {
-  const newTabel = document.createElement('table');
+
+function newTables(){
+
+  var newTabel = document.createElement('table');
+
   newTabel.className = 'table';
+
+  const tbody = document.createElement('tbody');
+  const tr = document.createElement('tr');
+
+  const td = document.createElement('td');
+  td.innerHTML = render({items: data});
+
+  tr.appendChild(td);
+  tbody.appendChild(tr);
+  newTabel.appendChild(tbody);
   headerBlock.insertAdjacentElement('afterEnd', newTabel);
 }
+
+
+newTableBtn.addEventListener('click', function () {
+
+  newTables();
+  if(document.body.children[1].lastElementChild){
+    document.body.children[1].removeChild(document.body.children[1].lastElementChild);
+  };
+});
+
 
 /* === добавляем ряд в таблицу === */
 function addRows() {
@@ -28,11 +51,7 @@ function addRows() {
 
 /* === наполняем ячейки содержимым === */
 function createCell(cell, text) {
-  // let div = document.createElement('div');
   const txt = document.createTextNode(text);
-  // div.appendChild(txt);
-  // div.setAttribute('class', style);
-  // div.setAttribute('className', style);
   cell.appendChild(txt);
 }
 
@@ -47,6 +66,7 @@ function addColumn() {
 /* === удаляем ряды у таблицы === */
 function delRows() {
   const table = document.querySelector('.table'),
+
     lastRow = table.rows.length - 1;
 
   for (let i = lastRow; i > 0; i--) {
@@ -66,7 +86,6 @@ function delColumns() {
   }
 }
 
-newTableBtn.addEventListener('click', newTables);
 addRowBtn.addEventListener('click', addRows);
 addColumnBtn.addEventListener('click', addColumn);
 delRow.addEventListener('click', delRows);
