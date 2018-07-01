@@ -79,3 +79,35 @@ img {
   background: $bg;
   overflow: hidden;
 }
+
+header {
+  margin-bottom: 20px;
+  background: #3ba2fb;
+}
+
+.menu {
+  display: flex;
+  padding: 25px;
+  justify-content: space-between;
+}
+
+.menu__item {
+  margin-right: 50px;
+  color: #fff;
+  text-transform: uppercase;
+
+  &:last-child {
+    margin-left: auto;
+  }
+}
+
+.table {
+  width: 960px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+td{
+  border: 1px solid #000;
+}
