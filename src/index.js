@@ -6,7 +6,7 @@ import './scss/layout/base.scss';
 
 /*= == modules === */
 import {
-  newTables, addRows, addColumn, delRows, delColumns, editCell,
+  newTables, addRows, addColumn, delRows, delColumns,
 } from './js/addRow';
 
 /*= == display of table one === */
@@ -16,4 +16,3 @@ addRows();
 addColumn();
 delRows();
 delColumns();
-editCell();

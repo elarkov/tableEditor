@@ -11,8 +11,6 @@ const delCell = document.querySelectorAll('.menu__item')[3];
 const newTableBtn = document.querySelectorAll('.menu__item')[5];
 
 
-
-
 function newTables() {
   const newTabel = document.createElement('table');
 
@@ -23,6 +21,7 @@ function newTables() {
 
   const td = document.createElement('td');
   td.innerHTML = render({ items: data });
+  newTabel.contentEditable = 'true';
 
   tr.appendChild(td);
   tbody.appendChild(tr);
@@ -31,10 +30,10 @@ function newTables() {
 }
 
 newTableBtn.addEventListener('click', () => {
-  newTables();
   if (document.body.children[1].lastElementChild) {
     document.body.children[1].removeChild(document.body.children[1].lastElementChild);
   }
+  newTables();
 });
 
 /* === добавляем ряд в таблицу === */
@@ -75,70 +74,6 @@ function delColumns() {
   }
 }
 
-function editCell() {
-  const table = document.querySelector('.table');
-  let editingTd;
-
-  table.onclick = function (event) {
-    let target = event.target;
-
-    while (target != table) {
-      if (target.className == 'edit-cancel') {
-        finishTdEdit(editingTd.elem, false);
-        return;
-      }
-
-      if (target.className == 'edit-ok') {
-        finishTdEdit(editingTd.elem, true);
-        return;
-      }
-
-      if (target.nodeName == 'TD') {
-        if (editingTd) return; // already editing
-
-        makeTdEditable(target);
-        return;
-      }
-
-      target = target.parentNode;
-    }
-  };
-
-
-  function makeTdEditable(td) {
-    editingTd = {
-      elem: td,
-      data: td.innerHTML,
-    };
-
-    td.classList.add('edit-td');
-
-    const textArea = document.createElement('textarea');
-    textArea.className = 'edit-area';
-
-    textArea.value = td.innerHTML;
-    td.innerHTML = '';
-    td.appendChild(textArea);
-    textArea.focus();
-
-    td.insertAdjacentHTML('beforeEnd',
-      `<div class="edit-controls">
-          <button class="edit-ok">Применить</button>
-          <button class="edit-cancel">Отменить</button>
-        </div>`);
-  }
-
-  function finishTdEdit(td, isOk) {
-    if (isOk) {
-      td.innerHTML = td.firstChild.value;
-    } else {
-      td.innerHTML = editingTd.data;
-    }
-    td.classList.remove('edit-td'); // remove edit class
-    editingTd = null;
-  }
-}
-
 
 addRowBtn.addEventListener('click', addRows);
 addColumnBtn.addEventListener('click', addColumn);
@@ -151,5 +86,4 @@ export {
   addColumn,
   delRows,
   delColumns,
-  editCell,
 };

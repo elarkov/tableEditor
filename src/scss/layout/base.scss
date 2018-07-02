@@ -106,6 +106,10 @@ header {
   margin: 0 auto;
   border: 1px solid #000;
   border-collapse: collapse;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 td {
