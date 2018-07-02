@@ -5,7 +5,9 @@ import './scss/layout/base.scss';
 /*= == include handlebars template === */
 
 /*= == modules === */
-import { newTables, addRows, addColumn, delRows, delColumns } from './js/addRow';
+import {
+  newTables, addRows, addColumn, delRows, delColumns, editCell,
+} from './js/addRow';
 
 /*= == display of table one === */
 
@@ -14,3 +16,4 @@ addRows();
 addColumn();
 delRows();
 delColumns();
+editCell();
